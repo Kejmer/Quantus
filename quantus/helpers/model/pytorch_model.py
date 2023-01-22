@@ -53,7 +53,7 @@ class PyTorchModel(ModelInterface):
         )
         self.device = device
 
-    def predict(self, x: np.ndarray, grad: bool = False, **kwargs) -> np.array:
+    def predict(self, x: np.ndarray, grad: bool = True, **kwargs) -> np.array:
         """
         Predict on the given input.
 
@@ -77,7 +77,7 @@ class PyTorchModel(ModelInterface):
 
         if self.model.training:
             raise AttributeError("Torch model needs to be in the evaluation mode.")
-        print("SUKCESS")
+
         grad_context = torch.no_grad() if not grad else suppress()
         
         with grad_context:
