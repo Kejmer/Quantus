@@ -77,9 +77,9 @@ class PyTorchModel(ModelInterface):
 
         if self.model.training:
             raise AttributeError("Torch model needs to be in the evaluation mode.")
-
+        print("SUKCESS")
         grad_context = torch.no_grad() if not grad else suppress()
-
+        
         with grad_context:
             pred = self.model(torch.Tensor(x).to(self.device), **model_predict_kwargs)
             if self.softmax:
