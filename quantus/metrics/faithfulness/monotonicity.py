@@ -301,8 +301,7 @@ class Monotonicity(PerturbationMetric):
 
             # Predict on perturbed input x (that was initially filled with a constant 'perturb_baseline' value).
             x_input = model.shape_input(x_baseline, x.shape, channel_first=True)
-            print(y)
-            y_pred_perturb = float(model.predict(x_input)[:, y])
+            y_pred_perturb = float(model.predict(x_input)[:, int(y)])
             preds[i_ix] = y_pred_perturb
 
         return np.all(np.diff(preds) >= 0)
